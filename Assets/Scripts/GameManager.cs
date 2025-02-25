@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public enum States
 {
     CanMove,
@@ -8,13 +10,15 @@ public enum States
 }
 public class GameManager : MonoBehaviour
 {
+    public States state = States.CanMove;
     public static GameManager Instance;
-    public BoxCollider2D collider;
+    public new BoxCollider2D collider;
     public GameObject token1, token2;
     public int Size = 3;
     public int[,] Matrix;
-    [SerializeField] private States state = States.CanMove;
-    public Camera camera;
+    public new Camera camera;
+    public int whoWin = 0;
+    public bool isGameStarted = false;
     void Start()
     {
         Instance = this;
@@ -27,9 +31,14 @@ public class GameManager : MonoBehaviour
                 Matrix[i, j] = 0; // 0: desocupat, 1: fitxa jugador 1, -1: fitxa IA;
             }
         }
+
+        SceneManager.LoadScene("ChoicePlayerToken", LoadSceneMode.Additive);
     }
     private void Update()
     {
+        if (!isGameStarted)
+            return;
+
         if (state == States.CanMove)
         {
             Vector3 m = Input.mousePosition;
@@ -51,6 +60,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         RandomAI();
     }
+
     public void RandomAI()
     {
         int alpha = int.MinValue;
@@ -163,12 +173,18 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 Debug.Log("Draw");
+                whoWin = result;
+                SceneManager.LoadScene("EndGame", LoadSceneMode.Additive);
                 break;
             case 1:
                 Debug.Log("You Win");
+                whoWin = result;
+                SceneManager.LoadScene("EndGame", LoadSceneMode.Additive);
                 break;
             case -1:
                 Debug.Log("You Lose");
+                whoWin = result;
+                SceneManager.LoadScene("EndGame", LoadSceneMode.Additive);
                 break;
             case 2:
                 if(state == States.CantMove)

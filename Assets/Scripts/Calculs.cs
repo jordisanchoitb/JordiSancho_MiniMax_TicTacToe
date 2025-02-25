@@ -16,6 +16,12 @@ public static class Calculs
     {
         return FirstPosition + new Vector2(x * LinearDistance, -y* LinearDistance);
     }
+
+    /// <summary>
+    /// Te devuelve un resultado a partir de la matriz del tablero
+    /// </summary>
+    /// <param name="matrix">matriz del tablero</param>
+    /// <returns>1 en caso de ganar jugador, -1 en caso de ganar IA, 0 en caso de empate y 2 en caso de que no se ha acabado la partida</returns>
     public static int EvaluateWin(int[,] matrix)
     {
         int counterX = 0;
