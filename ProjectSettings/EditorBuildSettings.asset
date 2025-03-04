@@ -7,5 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/ChoicePlayerToken.unity
+    guid: 3e77f39d0f081f242888dd19fc8a690e
+  - enabled: 1
+    path: Assets/Scenes/ChoicePlayerStart.unity
+    guid: 195d4942a1d706140bbdb5dbba42a380
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 3a32fcdafc6801f478c0bd6c3ed0c44d
   m_configObjects: {}

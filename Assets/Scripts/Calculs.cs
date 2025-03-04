@@ -16,6 +16,12 @@ public static class Calculs
     {
         return FirstPosition + new Vector2(x * LinearDistance, -y* LinearDistance);
     }
+
+    /// <summary>
+    /// Te devuelve un resultado a partir de la matriz del tablero
+    /// </summary>
+    /// <param name="matrix">matriz del tablero</param>
+    /// <returns>1 en caso de ganar jugador, -1 en caso de ganar IA, 0 en caso de empate y 2 en caso de que no se ha acabado la partida</returns>
     public static int EvaluateWin(int[,] matrix)
     {
         int counterX = 0;
@@ -37,7 +43,7 @@ public static class Calculs
             counterD2 += matrix[2-i, i];
         }
         if (counterD1 == 3 || counterD2 == 3) return 1;
-        else if(counterD1 == -3 || counterD2 == 3)  return -1;
+        else if(counterD1 == -3 || counterD2 == -3)  return -1;
         for(int i=0; i<matrix.GetLength(0);i++)
         {
             for(int j = 0; j < matrix.GetLength(1);j++)
